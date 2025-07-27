@@ -4,10 +4,12 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import LanguageToggle from "@/components/LanguageToggle";
 import LoginModal from "@/components/LoginModal";
 import SignupModal from "@/components/SignupModal";
-import { Heart } from "lucide-react";
+import { Heart, Store, ShoppingCart } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const HomePage = () => {
   const { t } = useLanguage();
+  const navigate = useNavigate();
   const [showLogin, setShowLogin] = useState(false);
   const [showSignup, setShowSignup] = useState(false);
 
@@ -68,17 +70,29 @@ const HomePage = () => {
             </div>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8 mt-16">
-            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-8 border border-white/20 hover:bg-white/20 transition-all duration-300 transform hover:scale-105">
-              <div className="text-4xl mb-4">🛒</div>
-              <h3 className="text-xl font-semibold text-primary mb-3">खरीदारों के लिए</h3>
-              <p className="text-muted-foreground">ताज़ी सब्जियाँ, फल और दैनिक आवश्यकताएं सीधे विक्रेताओं से</p>
+          <div className="grid md:grid-cols-3 gap-8 mt-16">
+            <div 
+              className="bg-white/10 backdrop-blur-sm rounded-xl p-8 border border-white/20 hover:bg-white/20 transition-all duration-300 transform hover:scale-105 cursor-pointer"
+              onClick={() => navigate('/grocery')}
+            >
+              <ShoppingCart className="h-10 w-10 text-primary mb-4 mx-auto" />
+              <h3 className="text-xl font-semibold text-primary mb-3 text-center">Grocery Store</h3>
+              <p className="text-muted-foreground text-center">Browse fresh groceries and daily essentials</p>
             </div>
             
+            <div 
+              className="bg-white/10 backdrop-blur-sm rounded-xl p-8 border border-white/20 hover:bg-white/20 transition-all duration-300 transform hover:scale-105 cursor-pointer"
+              onClick={() => navigate('/marketplace')}
+            >
+              <Store className="h-10 w-10 text-primary mb-4 mx-auto" />
+              <h3 className="text-xl font-semibold text-primary mb-3 text-center">Vendor Marketplace</h3>
+              <p className="text-muted-foreground text-center">Connect wholesalers with street vendors</p>
+            </div>
+
             <div className="bg-white/10 backdrop-blur-sm rounded-xl p-8 border border-white/20 hover:bg-white/20 transition-all duration-300 transform hover:scale-105">
-              <div className="text-4xl mb-4">🏪</div>
-              <h3 className="text-xl font-semibold text-primary mb-3">विक्रेताओं के लिए</h3>
-              <p className="text-muted-foreground">अपने उत्पादों को सीधे ग्राहकों तक पहुंचाएं</p>
+              <div className="text-4xl mb-4 text-center">🏪</div>
+              <h3 className="text-xl font-semibold text-primary mb-3 text-center">विक्रेताओं के लिए</h3>
+              <p className="text-muted-foreground text-center">अपने उत्पादों को सीधे ग्राहकों तक पहुंचाएं</p>
             </div>
           </div>
         </div>
